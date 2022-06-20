@@ -9,17 +9,33 @@ var connection = new SqlConnection(CONNECTION_STRING);
 
 connection.Open();
 ReadUsers(connection);
+ReadRoles(connection);
+ReadTags(connection);
 connection.Close();
-//ReadUser();
-//CreateUser();
-//UpdateUser();
-//DeleteUser();
 
 static void ReadUsers(SqlConnection connection)
 {
-    var repository = new UserRepository(connection);
+    var repository = new Repository<User>(connection);
     var users = repository.GetAll();
 
     foreach (var user in users)
         Console.WriteLine($"{user.Name} - {user.Email}"); 
+}
+
+static void ReadRoles(SqlConnection connection)
+{
+    var repository = new Repository<Role>(connection);
+    var roles = repository.GetAll();
+
+    foreach (var role in roles)
+        Console.WriteLine($"{role.Name} - {role.Slug}");
+}
+
+static void ReadTags(SqlConnection connection)
+{
+    var repository = new Repository<Tag>(connection);
+    var tags = repository.GetAll();
+
+    foreach (var item in tags)
+        Console.WriteLine($"{item.Name} - {item.Slug}"); 
 }
