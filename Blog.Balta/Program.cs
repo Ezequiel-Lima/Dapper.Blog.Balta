@@ -1,6 +1,5 @@
 ﻿using Blog.Balta.Models;
 using Blog.Balta.Repositories;
-using Dapper.Contrib.Extensions;
 using Microsoft.Data.SqlClient;
 
 const string CONNECTION_STRING = @"Server=localhost,1433;Database=Blog;User ID=sa;Password=1q2w3e4r@#$;Encrypt=false";
@@ -11,6 +10,7 @@ connection.Open();
 ReadUsers(connection);
 ReadRoles(connection);
 ReadTags(connection);
+ReadUsersWithRoles(connection);
 connection.Close();
 
 static void ReadUsers(SqlConnection connection)
@@ -19,7 +19,7 @@ static void ReadUsers(SqlConnection connection)
     var users = repository.GetAll();
 
     foreach (var user in users)
-        Console.WriteLine($"{user.Name} - {user.Email}"); 
+        Console.WriteLine($"{user.Name} - {user.Roles}"); 
 }
 
 static void ReadRoles(SqlConnection connection)
@@ -38,4 +38,19 @@ static void ReadTags(SqlConnection connection)
 
     foreach (var item in tags)
         Console.WriteLine($"{item.Name} - {item.Slug}"); 
+}
+
+static void ReadUsersWithRoles(SqlConnection connection)
+{
+    var repository = new UserRepository(connection);
+    var items = repository.GetWithRoles();
+
+    foreach (var user in items)
+    {
+        Console.WriteLine(user.Name);
+        foreach (var role in user.Roles)
+        {
+            Console.WriteLine($" - {role.Name}");
+        }
+    }
 }
