@@ -1,10 +1,5 @@
 ﻿using Blog.Balta.Models;
 using Blog.Balta.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Blog.Balta.Screens.TagScreens
 {
@@ -17,6 +12,7 @@ namespace Blog.Balta.Screens.TagScreens
             Console.WriteLine("-------------");
             List();
             Console.ReadKey();
+            MenuTagScreen.Load();
         }
 
         private static void List()

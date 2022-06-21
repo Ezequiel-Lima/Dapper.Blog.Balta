@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Blog.Balta.Screens.TagScreens
+﻿namespace Blog.Balta.Screens.TagScreens
 {
     public static class MenuTagScreen
     {
@@ -25,6 +19,9 @@ namespace Blog.Balta.Screens.TagScreens
             {
                 case 1:
                     ListTagScreen.Load();
+                    break;
+                case 2:
+                    CreateTagScreen.Load();
                     break;
                 default: Load(); break;
             }
