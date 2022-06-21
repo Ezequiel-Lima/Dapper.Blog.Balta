@@ -3,35 +3,38 @@ using Blog.Balta.Repositories;
 
 namespace Blog.Balta.Screens.TagScreens
 {
-    public static class CreateTagScreen
+    public class UpdateTagScreen
     {
         public static void Load()
         {
             Console.Clear();
-            Console.WriteLine("Nova tag");
+            Console.WriteLine("Atualizando uma tag");
             Console.WriteLine("-------------");
+            Console.WriteLine("Id: ");
+            var id = int.Parse(Console.ReadLine()!);
+
             Console.WriteLine("Nome: ");
             var name = Console.ReadLine();
 
             Console.WriteLine("Slug: ");
             var slug = Console.ReadLine();
 
-            Create(new Tag { Name = name, Slug = slug});
+            Update(new Tag { Id = id, Name = name, Slug = slug });
             Console.ReadKey();
             MenuTagScreen.Load();
         }
 
-        public static void Create(Tag tag)
+        public static void Update(Tag tag)
         {
             try
             {
                 var repository = new Repository<Tag>(Database.Conneciton);
-                repository.Create(tag);
-                Console.WriteLine("Tag cadastrada com sucesso!");
+                repository.Update(tag);
+                Console.WriteLine("Tag Atualizada com sucesso!");
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Não foi possível salvar a tag");
+                Console.WriteLine("Não foi possível atualizar a tag");
                 Console.WriteLine(ex.Message);
             }
         }
