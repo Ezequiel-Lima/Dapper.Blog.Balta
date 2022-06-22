@@ -19,10 +19,9 @@ namespace Blog.Balta.Screens.TagScreens
         {
             var repository = new Repository<Tag>(Database.Conneciton);
             var tags = repository.GetAll();
-            foreach (var item in tags)
-            {
-                Console.WriteLine($"{item.Id} - {item.Name} ({item.Slug})");
-            }
+
+            foreach (var item in tags)   
+                Console.WriteLine($"{item.Id} - {item.Name} ({item.Slug})");  
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Blog.Balta;
 using Blog.Balta.Screens.TagScreens;
+using Blog.Balta.Screens.UserScreens;
 using Microsoft.Data.SqlClient;
 
 const string CONNECTION_STRING = @"Server=localhost,1433;Database=Blog;User ID=sa;Password=1q2w3e4r@#$;Encrypt=false";
@@ -32,6 +33,9 @@ static void Load()
 
     switch (option)
     {
+        case 1:
+            MenuUserScreen.Load();
+            break;
         case 4:
             MenuTagScreen.Load();
             break;
